@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0A0D14">
+  <title>Анастасия Емельянова × Global Team Partners | Персональный Бизнес-Хаб & Бренд-Бук</title>
+  <meta name="description" content="Официальный персональный бизнес-офис Анастасии Емельяновой: стратегия развития фитнес-бизнеса, бренд-бук, канбан задач, воронки продаж и продюсирование от Global Team Partners.">
+
+  <!-- GOOGLE FONTS (Cormorant Garamond + Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. AUTH GATE OVERLAY (АВТОРИЗАЦИЯ КАК В REMOTE AGENTS CONTROL)
+       ========================================================================= -->
+  <div id="authGateOverlay" class="auth-gate-overlay">
+    <div class="auth-gate-card">
+      <div class="auth-brand-badge">
+        <span>🔒 ПЕРСОНАЛЬНЫЙ ОФИС · ДОСТУП</span>
+      </div>
+
+      <h2 class="auth-title">
+        Анастасия <span>Емельянова</span>
+      </h2>
+      <p class="auth-subtitle">
+        Бизнес-хаб продюсирования, бренд-бук и операционный офис от <b>Global Team Partners</b>.
+      </p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="authTabBtnLogin" onclick="HUB.switchAuthGateTab('login')">🔐 Вход</button>
+        <button class="auth-tab-btn" id="authTabBtnReg" onclick="HUB.switchAuthGateTab('reg')">⚡ Регистрация</button>
+      </div>
+
+      <div id="authAlert" class="auth-alert"></div>
+
+      <!-- ВХОД -->
+      <form id="authPanelLogin" class="auth-form" onsubmit="HUB.submitLogin(event)">
+        <div class="auth-input-group">
+          <label class="auth-label">Логин / Telegram / Email</label>
+          <input type="text" id="authLoginInput" class="auth-input" placeholder="anastasia или admin" autocomplete="username">
+        </div>
+
+        <div class="auth-input-group">
+          <label class="auth-label">Пароль</label>
+          <input type="password" id="authPassInput" class="auth-input" placeholder="••••••••" autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="auth-btn-primary">
+          <span>Войти в бизнес-офис</span>
+          <span>→</span>
+        </button>
+
+        <button type="button" class="auth-btn-guest" onclick="HUB.loginAsGuest()">
+          <span>👁️ Войти в демо-режиме (Гость)</span>
+        </button>
+      </form>
+
+      <!-- БЫСТРАЯ РЕГИСТРАЦИЯ -->
+      <form id="authPanelReg" class="auth-form" style="display: none;" onsubmit="HUB.submitRegister(event)">
+        <div class="auth-input-group">
+          <label class="auth-label">Ваше имя</label>
+          <input type="text" id="regNameInput" class="auth-input" placeholder="Анастасия">
+        </div>
+
+        <div class="auth-input-group">
+          <label class="auth-label">Желаемый логин</label>
+          <input type="text" id="regLoginInput" class="auth-input" placeholder="nastya_fit">
+        </div>
+
+        <div class="auth-input-group">
+          <label class="auth-label">Придумайте пароль</label>
+          <input type="password" id="regPassInput" class="auth-input" placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="auth-btn-primary">
+          <span>Создать профиль</span>
+          <span>✓</span>
+        </button>
+      </form>
+
+      <!-- БЫСТРЫЕ ПОДСКАЗКИ ДЛЯ ВХОДА В 1 КЛИК -->
+      <div class="auth-presets">
+        <div class="auth-presets-title">Быстрый выбор профиля для тестирования:</div>
+        <div class="auth-preset-chips">
+          <div class="auth-chip" onclick="HUB.fillPreset('anastasia', 'fit2026')">
+            <span class="auth-chip-role">👤 Анастасия Емельянова</span>
+            <span class="auth-chip-creds">anastasia / fit2026</span>
+          </div>
+          <div class="auth-chip" onclick="HUB.fillPreset('admin', 'global2026')">
+            <span class="auth-chip-role">⚡ Global Team Partners</span>
+            <span class="auth-chip-creds">admin / global2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       2. ШАПКА ХАБА (HEADER & TOP ACTIONS)
+       ========================================================================= -->
+  <header>
+    <div class="brand-pill">
+      ВЕДЕНИЕ ДЕЛ И СТРАТЕГИЯ · GLOBAL TEAM PARTNERS
+    </div>
+
+    <h1 class="main-title">
+      Анастасия Емельянова <span class="cross">×</span> <span class="highlight">Бизнес-Хаб</span>
+    </h1>
+
+    <p class="subtitle">
+      Персональный офис эксперта: развитие личного бренда, масштабирование фитнес-бизнеса, AI-воронки, бренд-бук и операционный контроль задач от Global Team Partners.
+    </p>
+
+    <div class="partner-badge-row">
+      <div class="partner-badge">
+        <span>💎 Эксперт: Анастасия Емельянова</span>
+      </div>
+      <div class="partner-badge">
+        <span>⚡ Продюсирование & AI: Global Team Partners</span>
+      </div>
+      <div class="partner-badge">
+        <span>🎯 Модель: Партнёрство без предоплаты</span>
+      </div>
+      <div class="partner-badge">
+        <span>🌐 Сайт V8: Live на GitHub Pages</span>
+      </div>
+    </div>
+
+    <div class="top-action-bar">
+      <div class="user-profile-badge">
+        <div class="user-avatar" id="userAvatarDisplay">АЕ</div>
+        <div>
+          <strong id="userNameDisplay" style="color: var(--white);">Анастасия Емельянова</strong>
+          <span id="userRoleDisplay" style="display:block; font-size:0.71rem; color: var(--gold-light);">Фитнес-эксперт · Наставник</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button class="btn-utility" onclick="HUB.toggleTheme()" title="Переключить светлую / тёмную тему">
+          <span>🌓</span>
+          <span>Тема</span>
+        </button>
+        <button class="btn-utility" onclick="HUB.exportBackup()" title="Скачать копию всех заметок и задач">
+          <span>💾</span>
+          <span>Экспорт JSON</span>
+        </button>
+        <button class="btn-utility" onclick="document.getElementById('importFileInput').click()" title="Загрузить сохранённые данные">
+          <span>📥</span>
+          <span>Импорт</span>
+        </button>
+        <button class="btn-utility" onclick="HUB.logout()" title="Выйти из хаба">
+          <span>🚪</span>
+          <span>Выйти</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Скрытый инпут для импорта JSON -->
+  <input type="file" id="importFileInput" accept=".json" style="display: none;" onchange="HUB.importBackup(event)">
+
+
+  <!-- =========================================================================
+       3. ПЛАВАЮЩАЯ ПАНЕЛЬ НАВИГАЦИИ (STICKY TABS)
+       ========================================================================= -->
+  <div class="nav-tabs-wrapper">
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-tab="partnership" onclick="HUB.switchTab('partnership')">
+        <span>👑</span>
+        <span>Партнёрство & Оффер</span>
+      </button>
+      <button class="tab-btn" data-tab="brandbook" onclick="HUB.switchTab('brandbook')">
+        <span>🎨</span>
+        <span>Бренд-бук</span>
+      </button>
+      <button class="tab-btn" data-tab="strategy" onclick="HUB.switchTab('strategy')">
+        <span>🚀</span>
+        <span>План & Роадмап</span>
+      </button>
+      <button class="tab-btn" data-tab="funnels" onclick="HUB.switchTab('funnels')">
+        <span>📊</span>
+        <span>Воронки & Продукты</span>
+      </button>
+      <button class="tab-btn" data-tab="kanban" onclick="HUB.switchTab('kanban')">
+        <span>📋</span>
+        <span>Канбан задач</span>
+      </button>
+      <button class="tab-btn" data-tab="notes" onclick="HUB.switchTab('notes')">
+        <span>📝</span>
+        <span>Умный блокнот</span>
+      </button>
+      <button class="tab-btn" data-tab="releases" onclick="HUB.switchTab('releases')">
+        <span>🎯</span>
+        <span>Трекер релизов</span>
+      </button>
+      <button class="tab-btn" data-tab="assets" onclick="HUB.switchTab('assets')">
+        <span>📁</span>
+        <span>Ассеты & Ссылки</span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       4. ОСНОВНЫЕ ВКЛАДКИ ХАБА (MAIN TAB PANELS)
+       ========================================================================= -->
+  <main class="hub-container">
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         ТАБ 1: ПАРТНЁРСТВО & ОФФЕР (ПОЧЕМУ БЕЗ ОПЛАТЫ + РОЛИ)
+         ───────────────────────────────────────────────────────────────── -->
+    <section id="tab-partnership" class="tab-panel active">
+      <div class="section-intro">
+        <div class="eyebrow">СТРАТЕГИЯ СОТРУДНИЧЕСТВА</div>
+        <h2>Почему мы делаем сайт без оплаты и как устроено партнёрство</h2>
+        <p>
+          Мы в <b>Global Team Partners</b> не берём деньги за разработку сайтов. Мы инвестируем свои технологии и экспертизу в перспективных экспертов, чтобы создать совместный масштабный бизнес.
+        </p>
+      </div>
+
+      <!-- ИНТЕРАКТИВНЫЙ PITCH DECK СЛАЙДЕР (КАК В LDS HUB) -->
+      <div class="pitch-slider-container">
+        
+        <!-- Slide 1 -->
+        <div class="pitch-slide active">
+          <div class="slide-counter">Слайд 01 / 06 · Модель сотрудничества</div>
+          <h3 class="slide-title">Мы делаем сайт как рекламник — без предоплаты со стороны Насти</h3>
+          <div class="slide-content">
+            <p style="margin-bottom: 12px;">
+              Обычно агентства берут за разработку кинематографического сайта со скролл-видео от <b>250 000 до 500 000 рублей</b>. Мы сделали эту систему для Анастасии <b>абсолютно бесплатно</b>.
+            </p>
+            <p style="margin-bottom: 12px;">
+              <b>В чём наша выгода?</b><br>
+              1. <b>Флагманский рекламный кейс</b>: Мы демонстрируем фитнес-рынку мощь наших технологий (кинематографичный скролл-движок V8, адаптивный прелоадер как в global-plus, интеграция AI-ботов).<br>
+              2. <b>Партнёрство на результате</b>: Мы заинтересованы не в разовой оплате за код, а в создании долгосрочного совместного дохода с автоматизированных воронок, закрытого клуба по подписке и масштабируемых курсов.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="pitch-slide">
+          <div class="slide-counter">Слайд 02 / 06 · Преимущества для Анастасии</div>
+          <h3 class="slide-title">В чём ключевые преимущества работы с Global Team Partners</h3>
+          <div class="slide-content">
+            <p style="margin-bottom: 12px;">
+              Фитнес-тренеры обычно продают свои личные часы и упираются в «стеклянный потолок» 150–250 тыс. руб., испытывая хроническую усталость и эмоциональное выгорание.
+            </p>
+            <p>
+              <b>Что получает Анастасия:</b><br>
+              • <b>Полная автоматизация продаж</b>: Продажа 3 тренировок за 999 ₽ происходит 24/7 без переписок в директе.<br>
+              • <b>AI-ассистент в Telegram</b>: Квалифицирует потенциальных клиенток, отсеивает нецелевых и записывает на созвон только платежеспособных людей.<br>
+              • <b>Кинематографический статус</b>: Сайт V8 мгновенно отстраивает Настю от 99% фитнес-блогеров с шаблонными лендингами на Таплинке или Тильде.<br>
+              • <b>План выхода на 1 000 000+ ₽/мес</b>: Переход от ручного ведения к клубу по подписке и AI-коучингу.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="pitch-slide">
+          <div class="slide-counter">Слайд 03 / 06 · Зона ответственности</div>
+          <h3 class="slide-title">В чём задействована Анастасия: Только любимое дело</h3>
+          <div class="slide-content">
+            <p style="margin-bottom: 12px;">
+              Главная цель нашего партнёрства — чтобы Настя <b>не тратила ни одной минуты</b> на техническую рутину, верстку, настройку доменов, споры с платежками или настройку ботов.
+            </p>
+            <p>
+              <b>Настя делает только то, в чём она супер-эксперт:</b><br>
+              1. <b>Снимает короткие видео (Reels / Shorts)</b> по готовым сценариям и хукам, которые готовит наша команда (всего 2–3 часа в неделю).<br>
+              2. <b>Проводит 20-минутные диагностики</b> с горячими лидами, которых отобрал наш Telegram-бот.<br>
+              3. <b>Ведёт тренировки и даёт обратную связь</b> своим подопечным, получая от этого удовольствие и тёплые отзывы.<br>
+              4. <b>Записывает кружочки и подкасты</b> для резидентов будущего закрытого клуба.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="pitch-slide">
+          <div class="slide-counter">Слайд 04 / 06 · Технический бэкенд</div>
+          <h3 class="slide-title">Что забирает на себя команда Global Team Partners</h3>
+          <div class="slide-content">
+            <p style="margin-bottom: 12px;">
+              Мы выступаем как полноценный IT- и продюсерский отдел Насти «под ключ»:
+            </p>
+            <p>
+              • <b>Разработка и поддержка сайта</b>: хостинг, верстка, оптимизация скролл-видео под все устройства, моментальная загрузка.<br>
+              • <b>Интеграция оплат</b>: подключение эквайринга, СБП, зарубежных карт и автодоставки материалов клиенту сразу после оплаты 999 ₽.<br>
+              • <b>Маркетинг и сценарии</b>: написание цепляющих хуков для Reels, упаковка продуктовой линейки, контент-планы.<br>
+              • <b>AI-агенты</b>: создание Telegram-бота на базе нейросетей, обученного стилю общения Насти.<br>
+              • <b>Аналитика и масштабирование</b>: отслеживание конверсий и оптимизация каждого шага воронки.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="pitch-slide">
+          <div class="slide-counter">Слайд 05 / 06 · Финансовая модель</div>
+          <h3 class="slide-title">Финансовая модель: 3 источника дохода без выгорания</h3>
+          <div class="slide-content">
+            <p style="margin-bottom: 12px;">
+              Мы не строим бизнес на разовых «запусках на надрыве». Мы выстраиваем регулярный предсказуемый денежный поток:
+            </p>
+            <p>
+              1. <b>Автоворонка 999 ₽ (Трипваер)</b>: 100–300 продаж в месяц = <b>100 000 – 300 000 ₽</b> (окупает весь рекламный трафик и приносит лояльных клиентов).<br>
+              2. <b>Премиальное ведение (Комплекс 25k)</b>: 10–12 клиентов = <b>250 000 – 300 000 ₽/мес</b> с высокой маржинальностью.<br>
+              3. <b>Фитнес-Клуб по подписке (2 990 ₽/мес)</b>: 200 участниц = <b>598 000 ₽/мес</b> чистого пассивного дохода.<br>
+              <b>Итог</b>: Выход на системный доход <b>950 000 – 1 200 000 ₽ ежемесячно</b>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="pitch-slide">
+          <div class="slide-counter">Слайд 06 / 06 · Первые 30 дней</div>
+          <h3 class="slide-title">План действий на первые 30 дней запуска</h3>
+          <div class="slide-content">
+            <p style="margin-bottom: 12px;">
+              <b>Неделя 1</b>: Финализация сайта V8 + открытие ссылки для клиентов + упаковка оффера 3 тренировок за 999 ₽.<br>
+              <b>Неделя 2</b>: Запись Настей первых 3 Reels по готовым сценариям из блокнота хаба.<br>
+              <b>Неделя 3</b>: Запуск бота для квалификации лидов в Telegram + первые 10 заявок на диагностику.<br>
+              <b>Неделя 4</b>: Первые продажи премиум-ведения «Комплекс» (25k) + фиксация первых 150 000 – 200 000 ₽ выручки.
+            </p>
+          </div>
+        </div>
+
+        <!-- Контроллеры слайдера -->
+        <div class="pitch-nav-controls">
+          <button class="pitch-btn" onclick="HUB.prevSlide()">← Назад</button>
+          
+          <div class="pitch-dots">
+            <span class="pitch-dot active" onclick="HUB.goToSlide(0)"></span>
+            <span class="pitch-dot" onclick="HUB.goToSlide(1)"></span>
+            <span class="pitch-dot" onclick="HUB.goToSlide(2)"></span>
+            <span class="pitch-dot" onclick="HUB.goToSlide(3)"></span>
+            <span class="pitch-dot" onclick="HUB.goToSlide(4)"></span>
+            <span class="pitch-dot" onclick="HUB.goToSlide(5)"></span>
+          </div>
+
+          <button class="pitch-btn" onclick="HUB.nextSlide()">Вперёд →</button>
+        </div>
+      </div>
+
+      <!-- ДЕТАЛЬНОЕ РАЗДЕЛЕНИЕ РОЛЕЙ В ВИДЕ КАРТОЧЕК -->
+      <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin: 34px 0 16px; color: var(--white);">
+        Чёткое разделение ролей: Кто за что отвечает
+      </h3>
+
+      <div class="roles-grid">
+        <!-- Колонка Насти -->
+        <div class="role-column expert">
+          <div class="role-header">
+            <div class="role-icon">👤</div>
+            <div>
+              <div class="role-title">Анастасия Емельянова</div>
+              <div class="role-badge">Эксперт · Методолог · Лицо бренда</div>
+            </div>
+          </div>
+
+          <ul class="role-list">
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Съемка коротких вертикальных видео (Reels / Shorts) по готовым сценариям команды (2–3 ч в неделю).</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Проведение 20-минутных онлайн-диагностик с клиентами, которых квалифицировал Telegram-бот.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Ведение персональных тренировок и авторский контроль питания подопечных.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Запись голосовых и поддерживающих кружочков для участниц комьюнити.</span>
+            </li>
+            <li style="opacity: 0.65; margin-top: 6px;">
+              <span class="cross-icon">✕</span>
+              <span><b>НЕ занимается</b>: программированием, кодом сайта, хостингом, доменами, настройкой оплат, сливом бюджетов и спамом в директ.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Колонка Global Team Partners -->
+        <div class="role-column partner">
+          <div class="role-header">
+            <div class="role-icon">⚡</div>
+            <div>
+              <div class="role-title">Global Team Partners</div>
+              <div class="role-badge">Технологический & Продюсерский партнёр</div>
+            </div>
+          </div>
+
+          <ul class="role-list">
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Полная разработка, поддержка и бесплатный хостинг кинематографического сайта V8 со скролл-видео.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Автоматизация выдачи 3 тренировок за 999 ₽ после оплаты через эквайринг и СБП.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Разработка виральных сценариев, хуков и контент-планов для Reels и соцсетей.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Создание и обучение Telegram-бота квалификации лидов под авторский стиль Насти.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Подготовка технической платформы для будущего закрытого Клуба по подписке (2 990 ₽/мес).</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span>Сквозная аналитика трафика, заявок и конверсий.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         ТАБ 2: БРЕНД-БУК АНАСТАСИИ ЕМЕЛЬЯНОВОЙ (BRAND BOOK)
+         ───────────────────────────────────────────────────────────────── -->
+    <section id="tab-brandbook" class="tab-panel">
+      <div class="section-intro">
+        <div class="eyebrow">ВИЗУАЛЬНЫЙ СТИЛЬ & ПОЗИЦИОНИРОВАНИЕ</div>
+        <h2>Официальный Бренд-Бук: Анастасия Емельянова</h2>
+        <p>
+          Фирменный стиль «Luxury Editorial Wellness» — сочетание дорогой журнальной эстетики, научного подхода к телу и глубокого уважения к женщине.
+        </p>
+      </div>
+
+      <!-- КАРТОЧКИ ПОЗИЦИОНИРОВАНИЯ -->
+      <div class="hub-grid">
+        <div class="hub-card" style="--card-accent: var(--gold);">
+          <div class="card-badge">ПОЗИЦИОНИРОВАНИЕ</div>
+          <div class="card-title">Сильное, подтянутое тело без крайностей</div>
+          <div class="card-desc">
+            Мы отстраиваемся от «убийственных марафонов» и «сушек на огурцах». Позиционирование Насти — это баланс: женственное, подтянутое, упругое тело через любовь к себе, здоровую еду и регулярное осознанное движение.
+          </div>
+        </div>
+
+        <div class="hub-card" style="--card-accent: var(--sage);">
+          <div class="card-badge">АРХЕТИП БРЕНДА</div>
+          <div class="card-title">Эстет + Мудрец / Заботливый Наставник</div>
+          <div class="card-desc">
+            Визуальная подача вдохновлена глянцем уровня Vogue и Kinfolk. В общении — тактичная старшая подруга и дипломированный эксперт, который не стыдит за съеденный круассан, а объясняет физиологию метаболизма.
+          </div>
+        </div>
+
+        <div class="hub-card" style="--card-accent: var(--gold-light);">
+          <div class="card-badge">ЦЕЛЕВАЯ АУДИТОРИЯ</div>
+          <div class="card-title">Осознанные девушки и женщины 22–38 лет</div>
+          <div class="card-desc">
+            Предпринимательницы, IT-специалисты, эксперты, молодые мамы. Ценят своё время, устали от срывов и диет, хотят иметь плоский живот, красивую осанку и высокий уровень энергии без чувства вины.
+          </div>
+        </div>
+      </div>
+
+      <!-- ЦВЕТОВАЯ ПАЛИТРА -->
+      <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin: 38px 0 16px; color: var(--white);">
+        Фирменная цветовая палитра бренда
+      </h3>
+
+      <div class="palette-grid">
+        <div class="color-swatch-card">
+          <div class="swatch-box" style="background: #C49E65;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Champagne Gold</div>
+            <div class="swatch-hex">#C49E65</div>
+            <div class="swatch-role">Люксовые акценты & кнопки</div>
+          </div>
+        </div>
+
+        <div class="color-swatch-card">
+          <div class="swatch-box" style="background: #5B6E4E;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Sage Green</div>
+            <div class="swatch-hex">#5B6E4E</div>
+            <div class="swatch-role">Здоровье, баланс & органика</div>
+          </div>
+        </div>
+
+        <div class="color-swatch-card">
+          <div class="swatch-box" style="background: #0E0D0C; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Deep Charcoal</div>
+            <div class="swatch-hex">#0E0D0C</div>
+            <div class="swatch-role">Глубокий премиальный чёрный</div>
+          </div>
+        </div>
+
+        <div class="color-swatch-card">
+          <div class="swatch-box" style="background: #F7F5F0;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color: #0E0D0C;">Soft Alabaster</div>
+            <div class="swatch-hex" style="color: #555;">#F7F5F0</div>
+            <div class="swatch-role">Тёплый фон сайта и карточек</div>
+          </div>
+        </div>
+
+        <div class="color-swatch-card">
+          <div class="swatch-box" style="background: #D8D2C8;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color: #0E0D0C;">Warm Sand Border</div>
+            <div class="swatch-hex" style="color: #555;">#D8D2C8</div>
+            <div class="swatch-role">Тонкие элегантные границы</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ТИПОГРАФИКА И TONE OF VOICE -->
+      <div class="roles-grid" style="margin-top: 30px;">
+        <div class="role-column">
+          <h4 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--gold-light); margin-bottom: 14px;">
+            Типографика бренда
+          </h4>
+          <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 16px;">
+            Сочетание итальянской классической антиквы и швейцарского минимализма:
+          </p>
+          <div style="background: var(--bg-surface); padding: 16px; border-radius: 8px; border: 1px solid var(--border-card); margin-bottom: 14px;">
+            <div style="font-family: var(--font-serif); font-size: 1.8rem; font-style: italic; color: var(--white); line-height: 1.2;">
+              Cormorant Garamond (Italic / Bold)
+            </div>
+            <div style="font-size: 0.76rem; color: var(--gold-light); margin-top: 4px;">Заголовки H1–H3, ключевые акценты и цитаты</div>
+          </div>
+          <div style="background: var(--bg-surface); padding: 16px; border-radius: 8px; border: 1px solid var(--border-card);">
+            <div style="font-family: var(--font-sans); font-size: 1rem; font-weight: 500; color: var(--white);">
+              Inter / Montserrat (300, 400, 600, 700)
+            </div>
+            <div style="font-size: 0.76rem; color: var(--sage-light); margin-top: 4px;">Основной текст, списки, кнопки, интерфейс</div>
+          </div>
+        </div>
+
+        <div class="role-column">
+          <h4 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--sage-light); margin-bottom: 14px;">
+            Tone of Voice (Голос бренда)
+          </h4>
+          <ul class="role-list">
+            <li>
+              <span class="check-icon">✓</span>
+              <span><b>Поддержка вместо вины</b>: «Ты не ленивая — тебе просто нужна понятная и бережная система».</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span><b>Научность на пальцах</b>: Объясняем метаболизм и дефицит калорий через простые образы.</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span><b>Без шаблонного фитнес-шлака</b>: Никаких «Гори жир!», «Качай попу!», «Соберись тряпка!».</span>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <span><b>Эстетика повседневности</b>: Красивая сервировка еды, утренняя пробежка в парке, свобода в теле.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ФОТО-СТАНДАРТЫ С РЕАЛЬНЫМИ ФОТО АНАСТАСИИ -->
+      <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin: 40px 0 16px; color: var(--white);">
+        Визуальные стандарты съёмок (Фото и Видео)
+      </h3>
+
+      <div class="hub-grid">
+        <div class="hub-card" style="padding: 16px;">
+          <img src="images/nastya-hero.webp" alt="Анастасия Емельянова Фото 1" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; margin-bottom: 14px;">
+          <div class="card-title" style="font-size: 1.2rem;">Портрет в светлой студии</div>
+          <p class="card-desc" style="font-size: 0.8rem;">Мягкий естественный свет из окна, открытая уверенная улыбка, нейтральный спортивный топ в тёплых тонах.</p>
+        </div>
+
+        <div class="hub-card" style="padding: 16px;">
+          <img src="images/nastya-about.webp" alt="Анастасия Емельянова Фото 2" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; margin-bottom: 14px;">
+          <div class="card-title" style="font-size: 1.2rem;">Динамика и движение</div>
+          <p class="card-desc" style="font-size: 0.8rem;">Эстетика осознанного фитнеса: свободная одежда, спокойный взгляд, акцент на легкости и пластике тела.</p>
+        </div>
+
+        <div class="hub-card" style="padding: 16px;">
+          <img src="images/nastya-workouts.webp" alt="Анастасия Емельянова Фото 3" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; margin-bottom: 14px;">
+          <div class="card-title" style="font-size: 1.2rem;">Арочные формы & Глянец</div>
+          <p class="card-desc" style="font-size: 0.8rem;">Использование классической архитектурной арки (Arch Frame) — символ перехода к новому качеству жизни.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         ТАБ 3: ПЛАН & РОАДМАП (ROADMAP + КАЛЬКУЛЯТОР ДОХОДА)
+         ───────────────────────────────────────────────────────────────── -->
+    <section id="tab-strategy" class="tab-panel">
+      <div class="section-intro">
+        <div class="eyebrow">СТРАТЕГИЯ МАСШТАБИРОВАНИЯ</div>
+        <h2>План развития фитнес-бизнеса на 12 месяцев вперёд</h2>
+        <p>
+          Чёткий пошаговый переход от индивидуальных консультаций к автоматизированной экосистеме с закрытым клубом по подписке и AI-нутрициологом.
+        </p>
+      </div>
+
+      <!-- РОАДМАП ЭТАПОВ -->
+      <div class="hub-grid">
+        <div class="hub-card" style="--card-accent: var(--gold);">
+          <div class="card-badge">ЭТАП 1 · МЕСЯЦ 1</div>
+          <div class="card-title">Быстрый старт & Трипваер</div>
+          <div class="card-desc">
+            • Запуск сайта V8 на широкую аудиторию.<br>
+            • Продажи 3 домашних тренировок за <b>999 ₽</b> (цель: 100–150 продаж).<br>
+            • Запуск Telegram-бота квалификации на бесплатную диагностику.<br>
+            • Первые 5–7 клиентов на персональное ведение.<br>
+            <b style="color: var(--gold-light);">Ожидаемая выручка: 150 000 – 250 000 ₽</b>
+          </div>
+        </div>
+
+        <div class="hub-card" style="--card-accent: var(--sage);">
+          <div class="card-badge">ЭТАП 2 · МЕСЯЦЫ 2–3</div>
+          <div class="card-title">Заполнение личного ведения</div>
+          <div class="card-desc">
+            • Выход на 10 постоянных клиенток на тарифе «Комплекс» (25 000 ₽/мес).<br>
+            • 8–10 клиенток на тарифе «Онлайн» (12 000 ₽/мес).<br>
+            • Публикация 15 сценариев виральных Reels с кодовыми словами в директ.<br>
+            • Формирование листа ожидания в закрытый фитнес-клуб.<br>
+            <b style="color: var(--sage-light);">Ожидаемая выручка: 400 000 – 500 000 ₽/мес</b>
+          </div>
+        </div>
+
+        <div class="hub-card" style="--card-accent: var(--blue);">
+          <div class="card-badge">ЭТАП 3 · МЕСЯЦЫ 4–6</div>
+          <div class="card-title">Запуск Фитнес-Клуба (Membership)</div>
+          <div class="card-desc">
+            • Старт ежемесячной клубной подписки за <b>2 990 ₽/мес</b>.<br>
+            • Набор первых 150–200 участниц из базы покупателей трипваера.<br>
+            • Еженедельные тренировки, закрытые эфиры и меню недели.<br>
+            • Доход становится регулярным и предсказуемым без привязки к часам Насти.<br>
+            <b style="color: #93C5FD);">Ожидаемая выручка: 700 000 – 900 000 ₽/мес</b>
+          </div>
+        </div>
+
+        <div class="hub-card" style="--card-accent: var(--purple);">
+          <div class="card-badge">ЭТАП 4 · МЕСЯЦЫ 7–12</div>
+          <div class="card-title">AI-Нутрициолог & Масштаб 1M+</div>
+          <div class="card-desc">
+            • Внедрение персонального AI-ассистента в Telegram, обученного на методике Насти (распознавание блюд по фото, расчет КБЖУ 24/7).<br>
+            • Масштабирование клуба до 500+ участниц.<br>
+            • Запуск премиальных фитнес-ретритов и оффлайн-выездов.<br>
+            <b style="color: #C4B5FD);">Ожидаемая выручка: 1 500 000+ ₽/мес</b>
+          </div>
+        </div>
+      </div>
+
+      <!-- ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР ДОХОДА -->
+      <div class="calc-card">
+        <div class="section-intro" style="margin-bottom: 20px;">
+          <div class="eyebrow">ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР</div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--white);">
+            Прогноз ежемесячного дохода Анастасии
+          </h3>
+          <p>
+            Передвигайте ползунки, чтобы увидеть, как складывается ежемесячный доход от трёх ключевых продуктов системы:
+          </p>
+        </div>
+
+        <div class="calc-grid">
+          <div class="calc-sliders">
+            <!-- Слайдер 1: Трипваер -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>1. Продажи 3 тренировок (999 ₽)</span>
+                <span id="valTripwire" class="slider-val">150 шт</span>
+              </div>
+              <input type="range" id="calcTripwire" min="0" max="500" step="10" value="150">
+            </div>
+
+            <!-- Слайдер 2: Ведение 25k -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>2. Клиенты на ведении «Комплекс» (25 000 ₽)</span>
+                <span id="valVip" class="slider-val">10 чел</span>
+              </div>
+              <input type="range" id="calcVip" min="0" max="25" step="1" value="10">
+            </div>
+
+            <!-- Слайдер 3: Клуб 2990 -->
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>3. Участницы Клуба по подписке (2 990 ₽/мес)</span>
+                <span id="valClub" class="slider-val">150 участниц</span>
+              </div>
+              <input type="range" id="calcClub" min="0" max="500" step="10" value="150">
+            </div>
+          </div>
+
+          <div class="calc-result-box">
+            <div class="calc-result-label">ПРОГНОЗ ДОХОДА В МЕСЯЦ</div>
+            <div id="calcTotalNumber" class="calc-result-number">848 350 ₽ / мес</div>
+            <div class="calc-breakdown">
+              <span id="bdTrip">• 3 тренировки (999 ₽): 149 850 ₽</span>
+              <span id="bdVip">• Комплекс (25k): 250 000 ₽</span>
+              <span id="bdClub">• Фитнес-Клуб (2 990 ₽): 448 500 ₽</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         ТАБ 4: ВОРОНКА & ПРОДУКТЫ (FUNNELS & PRODUCTS)
+         ───────────────────────────────────────────────────────────────── -->
+    <section id="tab-funnels" class="tab-panel">
+      <div class="section-intro">
+        <div class="eyebrow">АРХИТЕКТУРА ПРОДАЖ</div>
+        <h2>Продуктовая матрица и автоматическая воронка</h2>
+        <p>
+          Как холодный зритель из Reels превращается в покупателя курса за 999 ₽, а затем — в постоянного премиум-клиента на ведение.
+        </p>
+      </div>
+
+      <div class="hub-grid">
+        <!-- Уровень 1 -->
+        <div class="hub-card" style="--card-accent: var(--steel);">
+          <div class="card-badge">УРОВЕНЬ 1 · ВХОД</div>
+          <div class="card-title">Бесплатный Лид-Магнит</div>
+          <div class="card-desc">
+            <b>Продукт</b>: Гайд «5 скрытых ошибок в питании, которые мешают убрать живот» + Квиз самодиагностики в Telegram-боте.<br><br>
+            <b>Задача</b>: Собрать базу подписчиц в Telegram без рекламных затрат через кодовые слова в Reels.
+          </div>
+          <div style="font-size: 0.8rem; color: var(--gold-light); font-weight: 700; margin-top: auto;">
+            Стоимость: 0 ₽ (за контакт)
+          </div>
+        </div>
+
+        <!-- Уровень 2 -->
+        <div class="hub-card" style="--card-accent: var(--gold);">
+          <div class="card-badge">УРОВЕНЬ 2 · ТРИПВАЕР</div>
+          <div class="card-title">3 тренировки (верх, низ, фулл)</div>
+          <div class="card-desc">
+            <b>Продукт</b>: 3 полноценные домашние тренировки в HD-качестве с акцентом на осанку, ягодицы и плоский живот.<br><br>
+            <b>Задача</b>: Превратить холодного подписчика в первого платящего клиента, преодолеть барьер доверия.
+          </div>
+          <div style="font-size: 0.8rem; color: var(--gold-light); font-weight: 700; margin-top: auto;">
+            Стоимость: 999 ₽ (бессрочный доступ)
+          </div>
+        </div>
+
+        <!-- Уровень 3 -->
+        <div class="hub-card" style="--card-accent: var(--sage);">
+          <div class="card-badge">УРОВЕНЬ 3 · ОСНОВНОЙ ОФФЕР</div>
+          <div class="card-title">Онлайн-тренировки & Комплекс</div>
+          <div class="card-desc">
+            <b>Онлайн-тренировки (12 000 ₽/мес)</b>: 12 персональных тренировок по видеосвязи.<br><br>
+            <b>Комплекс (25 000 ₽/мес)</b>: Тренировки + разбор анализов + индивидуальный рацион питания + ежедневный контроль в Telegram.
+          </div>
+          <div style="font-size: 0.8rem; color: var(--sage-light); font-weight: 700; margin-top: auto;">
+            Стоимость: 12 000 – 25 000 ₽ / месяц
+          </div>
+        </div>
+
+        <!-- Уровень 4 -->
+        <div class="hub-card" style="--card-accent: var(--purple);">
+          <div class="card-badge">УРОВЕНЬ 4 · МАКСИМИЗАТОР</div>
+          <div class="card-title">Фитнес-Клуб «Тело и Дело»</div>
+          <div class="card-desc">
+            <b>Продукт</b>: Закрытый клуб с ежемесячной подпиской. Новые тренировки каждую неделю, чат поддержки, меню, эфиры с Настей.<br><br>
+            <b>Задача</b>: Пожизненный LTV клиента, рекуррентный пассивный доход без привязки к рабочему графику тренера.
+          </div>
+          <div style="font-size: 0.8rem; color: #C4B5FD; font-weight: 700; margin-top: auto;">
+            Стоимость: 2 990 ₽ / месяц (по подписке)
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         ТАБ 5: КАНБАН ЗАДАЧ (KANBAN BOARD)
+         ───────────────────────────────────────────────────────────────── -->
+    <section id="tab-kanban" class="tab-panel">
+      <div class="section-intro">
+        <div class="eyebrow">ОПЕРАЦИОННЫЙ ЦЕНТР</div>
+        <h2>Канбан-доска совместных задач проекта</h2>
+        <p>
+          Здесь зафиксированы текущие спринты команды Global Team Partners и персональные задачи Анастасии с возможностью перемещения и добавления.
+        </p>
+      </div>
+
+      <div class="kanban-toolbar">
+        <div style="font-size: 0.84rem; color: var(--text-dim);">
+          Статусы синхронизируются автоматически в вашем браузере.
+        </div>
+        <button class="btn-utility" onclick="HUB.openAddTaskModal()" style="background: var(--gold); color: #0E0D0C; font-weight: 700;">
+          <span>+</span>
+          <span>Добавить задачу</span>
+        </button>
+      </div>
+
+      <div class="kanban-columns">
+        <!-- Колонка 1: Очередь -->
+        <div class="kanban-column">
+          <div class="kanban-col-header">
+            <span class="kanban-col-title">📌 В очереди</span>
+            <span class="kanban-count" id="countTodo">0</span>
+          </div>
+          <div class="kanban-cards-list" id="kanbanListTodo"></div>
+        </div>
+
+        <!-- Колонка 2: В работе -->
+        <div class="kanban-column">
+          <div class="kanban-col-header">
+            <span class="kanban-col-title">⚡ В работе</span>
+            <span class="kanban-count" id="countProgress">0</span>
+          </div>
+          <div class="kanban-cards-list" id="kanbanListProgress"></div>
+        </div>
+
+        <!-- Колонка 3: Выполнено -->
+        <div class="kanban-column">
+          <div class="kanban-col-header">
+            <span class="kanban-col-title">✓ Выполнено</span>
+            <span class="kanban-count" id="countDone">0</span>
+          </div>
+          <div class="kanban-cards-list" id="kanbanListDone"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         ТАБ 6: УМНЫЙ БЛОКНОТ (SMART NOTES & REELS SCRIPTS)
+         ───────────────────────────────────────────────────────────────── -->
+    <section id="tab-notes" class="tab-panel">
+      <div class="section-intro">
+        <div class="eyebrow">БАЗА ЗНАНИЙ & КОНТЕНТ</div>
+        <h2>Умный блокнот: Сценарии Reels, идеи и скрипты</h2>
+        <p>
+          Готовые сценарии коротких роликов с высоким удержанием, чеклисты для диагностики и заметки по продуктам.
+        </p>
+      </div>
+
+      <div class="kanban-toolbar">
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <button class="btn-utility note-filter-btn active" data-cat="all" onclick="HUB.renderNotes('all')">Все заметки</button>
+          <button class="btn-utility note-filter-btn" data-cat="reels" onclick="HUB.renderNotes('reels')">🎬 Reels & Shorts</button>
+          <button class="btn-utility note-filter-btn" data-cat="clients" onclick="HUB.renderNotes('clients')">👥 Работа с клиентами</button>
+          <button class="btn-utility note-filter-btn" data-cat="products" onclick="HUB.renderNotes('products')">💎 Продукты</button>
+        </div>
+
+        <button class="btn-utility" onclick="HUB.openAddNoteModal()" style="background: var(--gold); color: #0E0D0C; font-weight: 700;">
+          <span>+</span>
+          <span>Создать заметку</span>
+        </button>
+      </div>
+
+      <div class="hub-grid" id="notesGrid"></div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         ТАБ 7: ТРЕКЕР РЕЛИЗОВ (RELEASES ENGINE)
+         ───────────────────────────────────────────────────────────────── -->
+    <section id="tab-releases" class="tab-panel">
+      <div class="section-intro">
+        <div class="eyebrow">КОНТРОЛЬ ЗАПУСКОВ</div>
+        <h2>Трекер ключевых релизов и готовности</h2>
+        <p>
+          Отслеживайте процент выполнения ключевых этапов совместного запуска. Отмечайте чекбоксы по мере готовности пунктов.
+        </p>
+      </div>
+
+      <div class="hub-grid" id="releasesGrid"></div>
+    </section>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         ТАБ 8: АССЕТЫ & ССЫЛКИ (ASSETS & RESOURCES)
+         ───────────────────────────────────────────────────────────────── -->
+    <section id="tab-assets" class="tab-panel">
+      <div class="section-intro">
+        <div class="eyebrow">ФАЙЛЫ & ДОСТУПЫ</div>
+        <h2>Каталог официальных ресурсов и ссылок</h2>
+        <p>
+          Все рабочие ссылки, репозитории, исходники и контакты собраны в едином реестре.
+        </p>
+      </div>
+
+      <div class="kanban-toolbar">
+        <div style="font-size: 0.84rem; color: var(--text-dim);">
+          Быстрый доступ ко всем компонентам цифровой экосистемы Насти.
+        </div>
+        <button class="btn-utility" onclick="HUB.openAddAssetModal()">
+          <span>+</span>
+          <span>Добавить ссылку</span>
+        </button>
+      </div>
+
+      <div class="hub-grid" id="assetsGrid"></div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================================
+       5. МОДАЛЬНЫЕ ОКНА (ДОБАВЛЕНИЕ ЗАДАЧ, ЗАМЕТОК, ССЫЛОК)
+       ========================================================================= -->
+
+  <!-- МОДАЛКА: ДОБАВИТЬ ЗАДАЧУ -->
+  <div id="addTaskModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="HUB.closeAddTaskModal()">&times;</button>
+      <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); margin-bottom: 16px;">
+        Добавить новую задачу
+      </h3>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label class="auth-label">Название задачи *</label>
+          <input type="text" id="taskTitleInput" class="auth-input" placeholder="Например: Записать видео-приветствие для клуба">
+        </div>
+
+        <div>
+          <label class="auth-label">Ответственный</label>
+          <select id="taskOwnerSelect" class="auth-input" style="height: 44px;">
+            <option value="nastya">Анастасия (Эксперт)</option>
+            <option value="gtp">Global Team Partners (Команда)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="auth-label">Тег / Направление</label>
+          <input type="text" id="taskTagInput" class="auth-input" placeholder="Reels, Трафик, Сайт, Клиенты">
+        </div>
+
+        <button class="auth-btn-primary" onclick="HUB.saveNewTask()">
+          <span>Сохранить задачу</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- МОДАЛКА: ДОБАВИТЬ ЗАМЕТКУ -->
+  <div id="addNoteModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="HUB.closeAddNoteModal()">&times;</button>
+      <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); margin-bottom: 16px;">
+        Создать новую заметку
+      </h3>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label class="auth-label">Категория</label>
+          <select id="noteCatSelect" class="auth-input" style="height: 44px;">
+            <option value="reels">🎬 Reels & Shorts</option>
+            <option value="clients">👥 Работа с клиентами</option>
+            <option value="products">💎 Продукты и офферы</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="auth-label">Заголовок заметки *</label>
+          <input type="text" id="noteTitleInput" class="auth-input" placeholder="Тема Reels или идея для поста">
+        </div>
+
+        <div>
+          <label class="auth-label">Содержание заметки *</label>
+          <textarea id="noteTextInput" class="auth-input" rows="5" style="height: auto; padding: 10px 14px; resize: vertical;" placeholder="Хук, основная мысль, призыв к действию..."></textarea>
+        </div>
+
+        <button class="auth-btn-primary" onclick="HUB.saveNewNote()">
+          <span>Сохранить заметку</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- МОДАЛКА: ДОБАВИТЬ ССЫЛКУ -->
+  <div id="addAssetModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="HUB.closeAddAssetModal()">&times;</button>
+      <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); margin-bottom: 16px;">
+        Добавить полезный ресурс
+      </h3>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label class="auth-label">Тип ресурса</label>
+          <select id="assetCatSelect" class="auth-input" style="height: 44px;">
+            <option value="site">🌐 Веб-сайт</option>
+            <option value="tg">💬 Telegram</option>
+            <option value="channel">📢 Канал</option>
+            <option value="insta">📸 Instagram</option>
+            <option value="repo">💻 Репозиторий / Код</option>
+            <option value="ref">📄 Документ / Диск</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="auth-label">Название ресурса *</label>
+          <input type="text" id="assetTitleInput" class="auth-input" placeholder="Например: Папка с исходниками фотосессии">
+        </div>
+
+        <div>
+          <label class="auth-label">URL / Ссылка *</label>
+          <input type="url" id="assetUrlInput" class="auth-input" placeholder="https://drive.google.com/...">
+        </div>
+
+        <button class="auth-btn-primary" onclick="HUB.saveNewAsset()">
+          <span>Добавить ссылку</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ВСПЛЫВАЮЩИЙ ТОАСТ-УВЕДОМЛЕНИЕ -->
+  <div id="hubToast" class="toast-msg"></div>
+
+
+  <!-- =========================================================================
+       6. ФУТЕР
+       ========================================================================= -->
+  <footer class="hub-footer">
+    <div>
+      © 2026 <b>Анастасия Емельянова</b> & <b>Global Team Partners</b>. Все права защищены.
+    </div>
+    <div style="margin-top: 6px;">
+      Продюсирование, IT-инфраструктура и AI-агенты: <a href="https://globalteamgroup.github.io/global-plus/" target="_blank">Global Team Group</a> · <a href="https://unityspirit.github.io/anastasia-v8/" target="_blank">Сайт V8 Live</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
